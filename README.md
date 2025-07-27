@@ -38,6 +38,6 @@ This is a fully responsive and interactive **portfolio website** built with **Re
 
 
 ## 📬 Contact
-- 📧 **sandunivihara228@gmail.com
-- 🔗 
+- 📧 **sandunivihara228@gmail.com**
+- 🔗 **https://www.linkedin.com/in/sanduni-vihara-56990528b**
 - 🐙 **https://github.com/sandu20021111**
