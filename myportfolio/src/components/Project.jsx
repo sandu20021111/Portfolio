@@ -8,6 +8,8 @@ import seleniumImg from "../assets/selenium.png";
 import supervisedImg from "../assets/supervised.png";
 import flowerImg from "../assets/flower.png";
 import showcaseImg from "../assets/studentshowcase.png";
+import seleniumImg2 from "../assets/selenium2.png";
+import wallet from "../assets/wallet.png";
 
 const projects = [
   {
@@ -72,6 +74,23 @@ const projects = [
       "A platform for students to showcase their projects and skills.",
     image: showcaseImg,
     link: "https://github.com/sandu20021111/skillhub",
+  },
+
+  {
+    id: 9,
+    title: "Selenium Automation for Instagram part II",
+    description:
+      "Automation script using Selenium for Instagram Profile update, note upload and delete.",
+    image: seleniumImg2,
+    link: "https://github.com/sandu20021111/Automative-Testing-Instagram-profile-photo-upload-add-note-",
+  },
+
+  {
+    id: 10,
+    title: "Wallet-Expense Tracking Mobile App",
+    description: "A mobile app for tracking expenses and managing budgets.",
+    image: wallet,
+    link: "https://github.com/sandu20021111/Wallet-Expenses-Tracking-Mobile-App",
   },
 ];
 
