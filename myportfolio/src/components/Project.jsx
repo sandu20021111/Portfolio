@@ -8,8 +8,9 @@ import seleniumImg from "../assets/selenium.png";
 import supervisedImg from "../assets/supervised.png";
 import flowerImg from "../assets/flower.png";
 import showcaseImg from "../assets/studentshowcase.png";
-import seleniumImg2 from "../assets/selenium2.png";
+import seleniumImg2 from "../assets/selenium2.jpg";
 import wallet from "../assets/wallet.png";
+import game from "../assets/game.png";
 
 const projects = [
   {
@@ -92,6 +93,14 @@ const projects = [
     image: wallet,
     link: "https://github.com/sandu20021111/Wallet-Expenses-Tracking-Mobile-App",
   },
+  {
+    id: 11,
+    title: "Breakout Game",
+    description:
+      "A classic arcade game where players break bricks with a ball.",
+    image: game,
+    link: "https://github.com/sandu20021111/Breakout-Game",
+  },
 ];
 
 const cardVariants = {
@@ -105,10 +114,10 @@ const cardVariants = {
 
 const Project = () => {
   return (
-    <section className=" text-white py-16 px-4" id="projects">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold mb-10 text-green-400 text-center">
-          My works
+    <section className=" text-white mt-5 " id="projects">
+      <div className="max-w-5xl mx-auto">
+        <h2 className="text-5xl font-bold mb-15 text-green-400 text-center">
+          My Works
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map(({ id, title, description, image, link }, i) => (

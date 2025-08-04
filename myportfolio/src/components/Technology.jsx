@@ -16,6 +16,8 @@ import {
   SiMongodb,
   SiSpring,
   SiTypescript,
+  SiSelenium,
+  SiPostman,
 } from "react-icons/si";
 
 const technologies = [
@@ -44,6 +46,16 @@ const technologies = [
   { id: 11, name: "Git", icon: <FaGitAlt className="text-red-600" /> },
   { id: 12, name: "Docker", icon: <FaDocker className="text-blue-500" /> },
   { id: 13, name: "Python", icon: <FaPython className="text-yellow-400" /> },
+  {
+    id: 14,
+    name: "seleniumn",
+    icon: <SiSelenium className="text-green-500" />,
+  },
+  {
+    id: 15,
+    name: "Postman",
+    icon: <SiPostman className="text-orange-500" />,
+  },
 ];
 
 // Variants for initial scroll animation
@@ -64,7 +76,7 @@ const Technologies = () => {
   return (
     <section className=" text-white py-16 px-4" id="technologies">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-10 text-green-400">
+        <h2 className="text-5xl font-bold mb-15 text-green-400">
           Technologies I Use
         </h2>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-8 justify-center">

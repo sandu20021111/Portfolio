@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import profile from "./assets/profile.jpg";
 import { TypeAnimation } from "react-type-animation";
-import { Menu, X } from "lucide-react";
+import {
+  Menu,
+  X,
+  ArrowUp,
+  Mail,
+  Github,
+  Linkedin,
+  Instagram,
+} from "lucide-react";
 import About from "./components/About";
 import Project from "./components/Project";
 import Technology from "./components/Technology";
@@ -11,8 +19,15 @@ import ContactForm from "./components/ContactForm";
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,33 +38,43 @@ const App = () => {
           setActiveSection(sections[i]);
         }
       }
+      setShowScrollTop(window.scrollY > 200);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
   const navItems = ["home", "about", "projects", "technologies", "contact"];
+
+  if (loading) {
+    return (
+      <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
+        <div className="w-12 h-12 border-4 border-green-400 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative overflow-hidden min-h-screen font-sans scroll-smooth dark">
-      {/* Animated Background */}
       <div className="fixed top-0 left-0 w-full h-full -z-10 animate-gradient bg-gradient-to-r from-purple-700 via-indigo-600 to-green-500 opacity-20 blur-2xl" />
 
-      <div className="relative z-10 min-h-screen bg-black/80 text-white">
+      <div className="relative z-10 min-h-screen bg-black/90 text-white">
         {/* Navbar */}
-        <nav className="w-full px-6 py-4 flex items-center justify-between sticky top-0 z-50 bg-black border-b border-gray-800">
-          <div className="text-2xl font-bold text-green-400">
-            SanduniVihara.
+        <nav className="w-full px-6 py-4 flex items-center justify-between sticky top-0 z-50 bg-black border-t border-gray-700">
+          <div className="text-2xl font-bold text-green-400 ml-30 tracking-wide">
+            Sanduni<span className="text-white">.dev</span>
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 mr-35">
             <ul className="hidden md:flex gap-8 text-lg">
               {navItems.map((item) => (
                 <li key={item}>
                   <a
                     href={`#${item}`}
-                    className={`capitalize transition ${
+                    className={`capitalize transition duration-200 ease-in-out ${
                       activeSection === item
                         ? "text-green-400 font-semibold"
                         : "hover:text-green-400"
@@ -60,8 +85,6 @@ const App = () => {
                 </li>
               ))}
             </ul>
-
-            {/* Mobile Toggle */}
             <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
               {isOpen ? (
                 <X size={28} className="text-green-400" />
@@ -89,13 +112,22 @@ const App = () => {
           </ul>
         )}
 
+        {/* Scroll To Top Button */}
+        {showScrollTop && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-6 right-6 z-50 bg-green-400 text-black p-3 rounded-full shadow-lg hover:bg-green-500 transition"
+          >
+            <ArrowUp className="w-5 h-5" />
+          </button>
+        )}
+
         {/* Hero Section */}
         <section
           id="home"
           className="pt-20 px-4 flex flex-col items-center justify-center"
         >
           <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            {/* Left */}
             <div>
               <p className="text-lg text-gray-400 mb-2">Software Developer</p>
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -111,7 +143,7 @@ const App = () => {
                   2000,
                 ]}
                 wrapper="span"
-                speed={50}
+                speed={70}
                 className="text-xl text-gray-300"
                 repeat={Infinity}
               />
@@ -129,7 +161,6 @@ const App = () => {
               </div>
             </div>
 
-            {/* Profile Image */}
             <div
               className="relative w-72 h-72 mx-auto cursor-pointer"
               onClick={() =>
@@ -184,17 +215,55 @@ const App = () => {
           <Skill />
         </section>
 
-        <section id="contact" className="mt-20 px-4 max-w-3xl mx-auto">
+        <section id="contact">
           <ContactForm />
         </section>
 
-        {/* Footer */}
-        <footer className="bg-gray-800 text-gray-400 py-8 mt-20">
-          <div className="max-w-6xl mx-auto text-center">
-            <p className="text-sm">
-              © {new Date().getFullYear()} Sanduni Vihara. All rights reserved.
+        <footer className="bg-black border-t border-gray-700 mt-20">
+          <div className="max-w-6xl mx-auto px-4 py-10 flex flex-col items-center text-center">
+            <h3 className="text-2xl font-bold text-green-400 mb-2">
+              Sanduni Vihara
+            </h3>
+            <p className="text-gray-400 mb-4 text-sm">
+              © {new Date().getFullYear()} All rights reserved.
             </p>
-            <p className="text-xs mt-2">Built with React and Tailwind CSS.</p>
+
+            <div className="flex gap-6 mb-4">
+              <a
+                href="mailto:sandunivihara228@example.com"
+                className="text-gray-400 hover:text-green-400 transition"
+              >
+                <Mail />
+              </a>
+              <a
+                href="https://github.com/sandu20021111"
+                target="_blank"
+                rel="noreferrer"
+                className="text-gray-400 hover:text-green-400 transition"
+              >
+                <Github />
+              </a>
+              <a
+                href="https://linkedin.com/in/yourusername"
+                target="_blank"
+                rel="noreferrer"
+                className="text-gray-400 hover:text-green-400 transition"
+              >
+                <Linkedin />
+              </a>
+              <a
+                href="https://instagram.com/sandu.vihara2002"
+                target="_blank"
+                rel="noreferrer"
+                className="text-gray-400 hover:text-green-400 transition"
+              >
+                <Instagram />
+              </a>
+            </div>
+
+            <p className="text-xs text-gray-600">
+              Built with ❤️ using React and Tailwind CSS.
+            </p>
           </div>
         </footer>
       </div>

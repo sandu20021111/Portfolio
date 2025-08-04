@@ -7,6 +7,8 @@ import {
   SiMysql,
   SiMongodb,
   SiSpring,
+  SiSelenium,
+  SiPostman,
 } from "react-icons/si";
 
 const skills = [
@@ -58,6 +60,18 @@ const skills = [
     level: 60,
     icon: <SiSpring className="text-green-500" />,
   },
+  {
+    id: 9,
+    name: "Selenium",
+    level: 90,
+    icon: <SiSelenium className="text-green-500" />,
+  },
+  {
+    id: 10,
+    name: "Postman",
+    level: 95,
+    icon: <SiPostman className="text-orange-500" />,
+  },
 ];
 
 const barVariants = {
@@ -72,7 +86,7 @@ const Skill = () => {
   return (
     <section className=" text-white py-16 px-4" id="skills">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold mb-10 text-green-400 text-center">
+        <h2 className="text-5xl font-bold mb-15 text-green-400 text-center">
           My Skills
         </h2>
         <div className="space-y-6">
