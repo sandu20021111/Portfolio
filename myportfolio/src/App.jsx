@@ -262,7 +262,7 @@ const App = () => {
             </div>
 
             <p className="text-xs text-gray-600">
-              Built with ❤️ using React and Tailwind CSS.
+              Built with using React and Tailwind CSS.
             </p>
           </div>
         </footer>
