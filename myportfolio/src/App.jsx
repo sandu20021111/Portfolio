@@ -135,7 +135,7 @@ const App = () => {
               </h1>
               <TypeAnimation
                 sequence={[
-                  "I create elegant UI/UX experiences.",
+                  "I test websites using various tools like selenium, jmeter, junit.",
                   2000,
                   "I build responsive websites.",
                   2000,
@@ -153,7 +153,7 @@ const App = () => {
                     Contact Me
                   </button>
                 </a>
-                <a href="/Sanduni_CV.pdf" download>
+                <a href="./Sanduni_CV.pdf" download>
                   <button className="border border-green-400 px-6 py-2 rounded-full font-medium hover:bg-green-400 hover:text-black transition">
                     Download CV
                   </button>
@@ -189,12 +189,12 @@ const App = () => {
             <p className="text-gray-300">Technologies Used</p>
           </div>
           <div>
-            <p className="text-3xl font-bold text-green-400">5+</p>
+            <p className="text-3xl font-bold text-green-400">3+</p>
             <p className="text-gray-300">Public Research Papers</p>
           </div>
           <div>
             <p className="text-3xl font-bold text-green-400">3+</p>
-            <p className="text-gray-300">Years Experience</p>
+            <p className="text-gray-300">Certificates Earned</p>
           </div>
         </div>
 
