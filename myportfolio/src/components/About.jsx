@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Spline from "@splinetool/react-spline";
 import { Github, Linkedin, Mail } from "lucide-react";
 
 const containerVariants = {
@@ -66,7 +65,7 @@ const About = () => {
             </p>
           </motion.div>
 
-          {/* Links with Icons */}
+          {/* Social Links */}
           <motion.div className="flex space-x-4 pt-4" variants={itemVariants}>
             <a
               href="https://github.com/sandu20021111"
@@ -96,12 +95,14 @@ const About = () => {
           </motion.div>
         </div>
 
-        {/* 3D Spline Section */}
-
-        <Spline
-          className="absolute lg:top-0 top-[55%] bottom-0 lg:right-[-35%] h-full sm:left-[22%]"
-          scene="https://prod.spline.design/tB8n3zKVLXONWtzk/scene.splinecode"
-        />
+        {/* Image Section */}
+        <motion.div className="flex justify-center" variants={itemVariants}>
+          <img
+            src="/about.png" // <-- replace with your image path
+            alt="About illustration"
+            className="w-[350px] md:w-[420px] rounded-xl shadow-lg"
+          />
+        </motion.div>
       </motion.div>
     </section>
   );
