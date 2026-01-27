@@ -1,29 +1,39 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
+import aboutImg from "../assets/about.png";
 
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: "easeOut", staggerChildren: 0.3 },
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+      staggerChildren: 0.3,
+    },
   },
 };
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 const About = () => {
   return (
-    <section className="relative text-white py-50 px-10 md:px-0" id="about">
+    <section className="relative text-white py-24 px-6 md:px-0" id="about">
       <motion.div
         className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-16"
         variants={containerVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true }}
       >
         {/* Text Section */}
         <div className="z-10 flex flex-col items-start space-y-6 md:space-y-8">
@@ -38,11 +48,12 @@ const About = () => {
             className="text-lg text-gray-300 leading-relaxed"
             variants={itemVariants}
           >
-            I'm{" "}
+            I’m{" "}
             <span className="text-green-400 font-semibold">Sanduni Vihara</span>
-            , a Full-Stack Developer specializing in React, Next.js and Tailwind
-            CSS. I build fast, responsive interfaces and ensure quality with
-            Selenium testing.
+            , a <strong>QA Engineer</strong> with a strong background in{" "}
+            <strong>UI/UX and full-stack development</strong>. I focus on
+            delivering reliable, user-friendly applications by combining manual
+            testing, automation, and usability-focused design thinking.
           </motion.p>
 
           <motion.div
@@ -50,23 +61,29 @@ const About = () => {
             variants={itemVariants}
           >
             <div>
-              <h3 className="text-gray-200 font-medium mb-2">My Approach:</h3>
+              <h3 className="text-gray-200 font-medium mb-2">
+                What I Focus On:
+              </h3>
               <ul className="space-y-2 pl-5 list-disc">
-                <li>Pixel-perfect UIs with clean, maintainable code</li>
-                <li>Automated testing to prevent bugs</li>
-                <li>Full-stack solutions from design to deployment</li>
-                <li>Performance optimization (Lighthouse ≥90)</li>
+                <li>Manual & automated testing (Selenium, TestNG)</li>
+                <li>Finding UI/UX issues that impact real users</li>
+                <li>Writing clear test cases & test scenarios</li>
+                <li>Ensuring performance, stability & usability</li>
               </ul>
             </div>
 
             <p className="text-gray-300">
-              When not coding, I contribute to open-source and write about web
-              development. Let's build something great!
+              With hands-on development experience, I understand how
+              applications are built — which helps me identify bugs earlier and
+              communicate effectively with developers.
             </p>
           </motion.div>
 
           {/* Social Links */}
-          <motion.div className="flex space-x-4 pt-4" variants={itemVariants}>
+          <motion.div
+            className="flex flex-wrap gap-4 pt-4"
+            variants={itemVariants}
+          >
             <a
               href="https://github.com/sandu20021111"
               target="_blank"
@@ -76,6 +93,7 @@ const About = () => {
               <Github size={20} />
               GitHub
             </a>
+
             <a
               href="https://linkedin.com/in/sanduni-vihara-56990528b"
               target="_blank"
@@ -85,6 +103,7 @@ const About = () => {
               <Linkedin size={20} />
               LinkedIn
             </a>
+
             <a
               href="mailto:sandunivihara228@gmail.com"
               className="flex items-center gap-2 bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800 transition"
@@ -98,9 +117,9 @@ const About = () => {
         {/* Image Section */}
         <motion.div className="flex justify-center" variants={itemVariants}>
           <img
-            src="/about.png" // <-- replace with your image path
-            alt="About illustration"
-            className="w-[350px] md:w-[420px] rounded-xl shadow-lg"
+            src={aboutImg}
+            alt="About Sanduni Vihara"
+            className="w-[320px] md:w-[420px] rounded-xl shadow-lg object-cover"
           />
         </motion.div>
       </motion.div>

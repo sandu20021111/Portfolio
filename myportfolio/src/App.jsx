@@ -10,6 +10,7 @@ import {
   Linkedin,
   Instagram,
 } from "lucide-react";
+
 import About from "./components/About";
 import Project from "./components/Project";
 import Technology from "./components/Technology";
@@ -31,13 +32,22 @@ const App = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "projects", "technologies", "contact"];
-      for (let i = 0; i < sections.length; i++) {
-        const section = document.getElementById(sections[i]);
-        if (section && window.scrollY >= section.offsetTop - 100) {
-          setActiveSection(sections[i]);
+      const sections = [
+        "home",
+        "about",
+        "projects",
+        "technologies",
+        "skills",
+        "contact",
+      ];
+
+      sections.forEach((sec) => {
+        const el = document.getElementById(sec);
+        if (el && window.scrollY >= el.offsetTop - 120) {
+          setActiveSection(sec);
         }
-      }
+      });
+
       setShowScrollTop(window.scrollY > 200);
     };
 
@@ -47,7 +57,14 @@ const App = () => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const navItems = ["home", "about", "projects", "technologies", "contact"];
+  const navItems = [
+    "home",
+    "about",
+    "projects",
+    "technologies",
+    "skills",
+    "contact",
+  ];
 
   if (loading) {
     return (
@@ -58,46 +75,46 @@ const App = () => {
   }
 
   return (
-    <div className="relative overflow-hidden min-h-screen font-sans scroll-smooth dark">
-      <div className="fixed top-0 left-0 w-full h-full -z-10 animate-gradient bg-gradient-to-r from-purple-700 via-indigo-600 to-green-500 opacity-20 blur-2xl" />
+    <div className="relative min-h-screen font-sans scroll-smooth dark overflow-hidden">
+      {/* Background glow */}
+      <div className="fixed inset-0 -z-10 animate-gradient bg-gradient-to-r from-purple-700 via-indigo-600 to-green-500 opacity-20 blur-2xl" />
 
-      <div className="relative z-10 min-h-screen bg-black/90 text-white">
+      <div className="relative z-10 bg-black/90 text-white min-h-screen">
         {/* Navbar */}
-        <nav className="w-full px-6 py-4 flex items-center justify-between sticky top-0 z-50 bg-black border-t border-gray-700">
-          <div className="text-2xl font-bold text-green-400 ml-30 tracking-wide">
+        <nav className="sticky top-0 z-50 bg-black border-b border-gray-800 px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-green-400 tracking-wide">
             Sanduni<span className="text-white">.dev</span>
-          </div>
+          </h1>
 
-          <div className="flex items-center gap-6 mr-35">
-            <ul className="hidden md:flex gap-8 text-lg">
-              {navItems.map((item) => (
-                <li key={item}>
-                  <a
-                    href={`#${item}`}
-                    className={`capitalize transition duration-200 ease-in-out ${
-                      activeSection === item
-                        ? "text-green-400 font-semibold"
-                        : "hover:text-green-400"
-                    }`}
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
-              {isOpen ? (
-                <X size={28} className="text-green-400" />
-              ) : (
-                <Menu size={28} className="text-green-400" />
-              )}
-            </div>
+          <ul className="hidden md:flex gap-8 text-lg">
+            {navItems.map((item) => (
+              <li key={item}>
+                <a
+                  href={`#${item}`}
+                  className={`capitalize transition ${
+                    activeSection === item
+                      ? "text-green-400 font-semibold"
+                      : "hover:text-green-400"
+                  }`}
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <div className="md:hidden cursor-pointer" onClick={toggleMenu}>
+            {isOpen ? (
+              <X size={28} className="text-green-400" />
+            ) : (
+              <Menu size={28} className="text-green-400" />
+            )}
           </div>
         </nav>
 
-        {/* Mobile Menu */}
+        {/* Mobile menu */}
         {isOpen && (
-          <ul className="md:hidden flex flex-col items-center gap-6 py-6 text-lg bg-black border-b border-gray-800">
+          <ul className="md:hidden bg-black border-b border-gray-800 py-6 flex flex-col items-center gap-6">
             {navItems.map((item) => (
               <li key={item}>
                 <a
@@ -112,41 +129,48 @@ const App = () => {
           </ul>
         )}
 
-        {/* Scroll To Top Button */}
+        {/* Scroll to top */}
         {showScrollTop && (
           <button
             onClick={scrollToTop}
             className="fixed bottom-6 right-6 z-50 bg-green-400 text-black p-3 rounded-full shadow-lg hover:bg-green-500 transition"
           >
-            <ArrowUp className="w-5 h-5" />
+            <ArrowUp size={18} />
           </button>
         )}
 
-        {/* Hero Section */}
+        {/* Hero */}
         <section
           id="home"
-          className="pt-20 px-4 flex flex-col items-center justify-center"
+          className="pt-24 px-4 flex items-center justify-center"
         >
-          <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-lg text-gray-400 mb-2">Software Developer</p>
+              <p className="text-lg text-gray-400 mb-2">
+                QA Engineer | UI/UX Focused | Full-Stack Background
+              </p>
+
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Hello I'm <span className="text-green-400">Sanduni Vihara</span>
+                Hello, I’m{" "}
+                <span className="text-green-400">Sanduni Vihara</span>
               </h1>
+
               <TypeAnimation
                 sequence={[
-                  "I test websites using various tools like selenium, jmeter, junit.",
+                  "I ensure software quality through manual & automation testing.",
                   2000,
-                  "I build responsive websites.",
+                  "I automate test cases using Selenium & TestNG.",
                   2000,
-                  "I work with modern JavaScript frameworks.",
+                  "I focus on UI/UX usability and visual consistency.",
+                  2000,
+                  "I understand full-stack workflows to catch bugs early.",
                   2000,
                 ]}
-                wrapper="span"
                 speed={70}
-                className="text-xl text-gray-300"
                 repeat={Infinity}
+                className="text-xl text-gray-300"
               />
+
               <div className="mt-6 flex gap-4">
                 <a href="#contact">
                   <button className="bg-green-400 px-6 py-2 rounded-full font-medium text-black hover:bg-green-500 transition">
@@ -161,17 +185,18 @@ const App = () => {
               </div>
             </div>
 
+            {/* Profile Image */}
             <div
               className="relative w-72 h-72 mx-auto cursor-pointer"
               onClick={() =>
                 window.open("https://github.com/sandu20021111", "_blank")
               }
             >
-              <div className="absolute inset-0 rounded-full border-4 border-green-400 animate-pulse shadow-[0_0_25px_#22c55e] z-0" />
-              <div className="absolute inset-4 rounded-full border-t-4 border-green-400 animate-spin-slow z-0" />
+              <div className="absolute inset-0 rounded-full border-4 border-green-400 animate-pulse shadow-[0_0_25px_#22c55e]" />
+              <div className="absolute inset-4 rounded-full border-t-4 border-green-400 animate-spin-slow" />
               <img
                 src={profile}
-                alt="Profile"
+                alt="Sanduni Vihara"
                 className="w-full h-full object-cover rounded-full border-4 border-black relative z-10"
               />
             </div>
@@ -179,96 +204,65 @@ const App = () => {
         </section>
 
         {/* Stats */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div>
-            <p className="text-3xl font-bold text-green-400">10+</p>
-            <p className="text-gray-300">Projects Completed</p>
-          </div>
-          <div>
-            <p className="text-3xl font-bold text-green-400">10+</p>
-            <p className="text-gray-300">Technologies Used</p>
-          </div>
-          <div>
-            <p className="text-3xl font-bold text-green-400">3+</p>
-            <p className="text-gray-300">Public Research Papers</p>
-          </div>
-          <div>
-            <p className="text-3xl font-bold text-green-400">3+</p>
-            <p className="text-gray-300">Certificates Earned</p>
-          </div>
+        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <Stat value="10+" label="Projects Tested & Built" />
+          <Stat value="10+" label="Tools & Technologies" />
+          <Stat value="3+" label="Research Works" />
+          <Stat value="3+" label="Certificates Earned" />
         </div>
 
         {/* Sections */}
         <section id="about">
           <About />
         </section>
-
         <section id="projects" className="mt-20 px-4 max-w-6xl mx-auto">
           <Project />
         </section>
-
         <section id="technologies" className="mt-20 px-4 max-w-6xl mx-auto">
           <Technology />
         </section>
-
         <section id="skills" className="mt-20 px-4 max-w-6xl mx-auto">
           <Skill />
         </section>
-
         <section id="contact">
           <ContactForm />
         </section>
 
-        <footer className="bg-black border-t border-gray-700 mt-20">
-          <div className="max-w-6xl mx-auto px-4 py-10 flex flex-col items-center text-center">
-            <h3 className="text-2xl font-bold text-green-400 mb-2">
-              Sanduni Vihara
-            </h3>
-            <p className="text-gray-400 mb-4 text-sm">
-              © {new Date().getFullYear()} All rights reserved.
-            </p>
+        {/* Footer */}
+        <footer className="border-t border-gray-800 mt-20 py-10 text-center">
+          <h3 className="text-2xl font-bold text-green-400 mb-2">
+            Sanduni Vihara
+          </h3>
 
-            <div className="flex gap-6 mb-4">
-              <a
-                href="mailto:sandunivihara228@example.com"
-                className="text-gray-400 hover:text-green-400 transition"
-              >
-                <Mail />
-              </a>
-              <a
-                href="https://github.com/sandu20021111"
-                target="_blank"
-                rel="noreferrer"
-                className="text-gray-400 hover:text-green-400 transition"
-              >
-                <Github />
-              </a>
-              <a
-                href="https://linkedin.com/in/yourusername"
-                target="_blank"
-                rel="noreferrer"
-                className="text-gray-400 hover:text-green-400 transition"
-              >
-                <Linkedin />
-              </a>
-              <a
-                href="https://instagram.com/sandu.vihara2002"
-                target="_blank"
-                rel="noreferrer"
-                className="text-gray-400 hover:text-green-400 transition"
-              >
-                <Instagram />
-              </a>
-            </div>
-
-            <p className="text-xs text-gray-600">
-              Built with using React and Tailwind CSS.
-            </p>
+          <div className="flex justify-center gap-6 mb-4">
+            <a href="mailto:sandunivihara228@gmail.com">
+              <Mail />
+            </a>
+            <a href="https://github.com/sandu20021111" target="_blank">
+              <Github />
+            </a>
+            <a href="#" target="_blank">
+              <Linkedin />
+            </a>
+            <a href="https://instagram.com/sandu.vihara2002" target="_blank">
+              <Instagram />
+            </a>
           </div>
+
+          <p className="text-xs text-gray-600">
+            Built with React & Tailwind CSS
+          </p>
         </footer>
       </div>
     </div>
   );
 };
+
+const Stat = ({ value, label }) => (
+  <div>
+    <p className="text-3xl font-bold text-green-400">{value}</p>
+    <p className="text-gray-300">{label}</p>
+  </div>
+);
 
 export default App;

@@ -1,6 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaReact, FaNodeJs, FaJsSquare } from "react-icons/fa";
+import {
+  FaReact,
+  FaNodeJs,
+  FaJsSquare,
+  FaPhp,
+  FaUserShield,
+} from "react-icons/fa";
 import {
   SiTailwindcss,
   SiTypescript,
@@ -9,107 +15,105 @@ import {
   SiSpring,
   SiSelenium,
   SiPostman,
+  SiJira,
+  SiNextdotjs,
+  SiFirebase,
+  SiApachejmeter,
 } from "react-icons/si";
 
+/* 🔹 Skill Data */
 const skills = [
-  {
-    id: 1,
-    name: "React",
-    level: 90,
-    icon: <FaReact className="text-blue-400" />,
-  },
-  {
-    id: 2,
-    name: "Node.js",
-    level: 80,
-    icon: <FaNodeJs className="text-green-600" />,
-  },
-  {
-    id: 3,
-    name: "Tailwind CSS",
-    level: 85,
-    icon: <SiTailwindcss className="text-teal-400" />,
-  },
-  {
-    id: 4,
-    name: "JavaScript",
-    level: 95,
-    icon: <FaJsSquare className="text-yellow-400" />,
-  },
-  {
-    id: 5,
-    name: "TypeScript",
-    level: 70,
-    icon: <SiTypescript className="text-blue-600" />,
-  },
-  {
-    id: 6,
-    name: "MySQL",
-    level: 75,
-    icon: <SiMysql className="text-blue-700" />,
-  },
-  {
-    id: 7,
-    name: "MongoDB",
-    level: 65,
-    icon: <SiMongodb className="text-green-700" />,
-  },
-  {
-    id: 8,
-    name: "Spring Boot",
-    level: 60,
-    icon: <SiSpring className="text-green-500" />,
-  },
-  {
-    id: 9,
-    name: "Selenium",
-    level: 90,
-    icon: <SiSelenium className="text-green-500" />,
-  },
-  {
-    id: 10,
-    name: "Postman",
-    level: 95,
-    icon: <SiPostman className="text-orange-500" />,
-  },
+  { name: "Selenium", level: 90, icon: <SiSelenium /> },
+  { name: "Postman", level: 95, icon: <SiPostman /> },
+  { name: "JMeter", level: 75, icon: <SiApachejmeter /> },
+  { name: "Jira", level: 85, icon: <SiJira /> },
+
+  { name: "React", level: 90, icon: <FaReact /> },
+  { name: "Next.js", level: 75, icon: <SiNextdotjs /> },
+  { name: "JavaScript", level: 95, icon: <FaJsSquare /> },
+  { name: "TypeScript", level: 70, icon: <SiTypescript /> },
+  { name: "Tailwind CSS", level: 85, icon: <SiTailwindcss /> },
+
+  { name: "Node.js", level: 80, icon: <FaNodeJs /> },
+  { name: "Spring Boot", level: 60, icon: <SiSpring /> },
+  { name: "PHP", level: 65, icon: <FaPhp /> },
+  { name: "Clerk Auth", level: 70, icon: <FaUserShield /> },
+
+  { name: "MySQL", level: 75, icon: <SiMysql /> },
+  { name: "MongoDB", level: 65, icon: <SiMongodb /> },
+  { name: "Firebase", level: 80, icon: <SiFirebase /> },
 ];
 
-const barVariants = {
-  hidden: { width: 0 },
-  visible: (level) => ({
-    width: `${level}%`,
-    transition: { duration: 1.5, ease: "easeOut" },
-  }),
+/* 🔹 Circular Progress Component */
+const CircularSkill = ({ skill, index }) => {
+  const radius = 42;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (skill.level / 100) * circumference;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.05 }}
+      className="flex flex-col items-center gap-3 p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-green-400 transition"
+    >
+      <div className="relative w-28 h-28">
+        <svg className="w-full h-full -rotate-90">
+          <circle
+            cx="56"
+            cy="56"
+            r={radius}
+            stroke="#374151"
+            strokeWidth="8"
+            fill="transparent"
+          />
+          <motion.circle
+            cx="56"
+            cy="56"
+            r={radius}
+            stroke="#4ade80"
+            strokeWidth="8"
+            fill="transparent"
+            strokeDasharray={circumference}
+            strokeDashoffset={circumference}
+            animate={{ strokeDashoffset: offset }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
+            strokeLinecap="round"
+          />
+        </svg>
+
+        {/* Center Icon */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <span className="text-2xl text-green-400">{skill.icon}</span>
+          <span className="text-xs text-gray-300 mt-1">{skill.level}%</span>
+        </div>
+      </div>
+
+      <p className="text-sm font-semibold text-gray-200">{skill.name}</p>
+    </motion.div>
+  );
 };
 
 const Skill = () => {
   return (
-    <section className=" text-white py-16 px-4" id="skills">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-5xl font-bold mb-15 text-green-400 text-center">
-          My Skills
-        </h2>
-        <div className="space-y-6">
-          {skills.map(({ id, name, level, icon }) => (
-            <div key={id}>
-              <div className="flex justify-between items-center mb-1">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">{icon}</span>
-                  <span className="font-semibold">{name}</span>
-                </div>
-                <span>{level}%</span>
-              </div>
-              <div className="w-full bg-gray-700 rounded-full h-3">
-                <motion.div
-                  className="h-3 bg-green-400 rounded-full"
-                  custom={level}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.8 }}
-                  variants={barVariants}
-                />
-              </div>
-            </div>
+    <section id="skills" className="py-24 px-6 text-white">
+      <div className="max-w-6xl mx-auto">
+        {/* Title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold text-center text-green-400 mb-16"
+        >
+          Skills & Expertise
+        </motion.h2>
+
+        {/* Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+          {skills.map((skill, index) => (
+            <CircularSkill key={index} skill={skill} index={index} />
           ))}
         </div>
       </div>

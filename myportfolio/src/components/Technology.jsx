@@ -4,11 +4,11 @@ import {
   FaReact,
   FaNodeJs,
   FaGitAlt,
-  FaDocker,
   FaPython,
   FaHtml5,
   FaCss3Alt,
   FaJsSquare,
+  FaPhp,
 } from "react-icons/fa";
 import {
   SiTailwindcss,
@@ -18,86 +18,116 @@ import {
   SiTypescript,
   SiSelenium,
   SiPostman,
+  SiJira,
+  SiNextdotjs,
+  SiFirebase,
+  SiApachejmeter,
+  SiClerk,
 } from "react-icons/si";
 
-const technologies = [
-  { id: 1, name: "React", icon: <FaReact className="text-blue-400" /> },
-  { id: 2, name: "Node.js", icon: <FaNodeJs className="text-green-600" /> },
+/* 🔹 Technology Groups */
+const techGroups = [
   {
-    id: 3,
-    name: "Tailwind CSS",
-    icon: <SiTailwindcss className="text-teal-400" />,
-  },
-  { id: 4, name: "MySQL", icon: <SiMysql className="text-blue-700" /> },
-  { id: 5, name: "MongoDB", icon: <SiMongodb className="text-green-700" /> },
-  { id: 6, name: "Spring Boot", icon: <SiSpring className="text-green-500" /> },
-  {
-    id: 7,
-    name: "JavaScript",
-    icon: <FaJsSquare className="text-yellow-400" />,
+    title: "QA & Testing",
+    items: [
+      { name: "Selenium", icon: <SiSelenium /> },
+      { name: "Postman", icon: <SiPostman /> },
+      { name: "JMeter", icon: <SiApachejmeter /> },
+    ],
   },
   {
-    id: 8,
-    name: "TypeScript",
-    icon: <SiTypescript className="text-blue-600" />,
-  },
-  { id: 9, name: "HTML5", icon: <FaHtml5 className="text-orange-600" /> },
-  { id: 10, name: "CSS3", icon: <FaCss3Alt className="text-blue-500" /> },
-  { id: 11, name: "Git", icon: <FaGitAlt className="text-red-600" /> },
-  { id: 12, name: "Docker", icon: <FaDocker className="text-blue-500" /> },
-  { id: 13, name: "Python", icon: <FaPython className="text-yellow-400" /> },
-  {
-    id: 14,
-    name: "seleniumn",
-    icon: <SiSelenium className="text-green-500" />,
+    title: "Frontend",
+    items: [
+      { name: "React", icon: <FaReact /> },
+      { name: "Next.js", icon: <SiNextdotjs /> },
+      { name: "JavaScript", icon: <FaJsSquare /> },
+      { name: "TypeScript", icon: <SiTypescript /> },
+      { name: "HTML5", icon: <FaHtml5 /> },
+      { name: "CSS3", icon: <FaCss3Alt /> },
+      { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+    ],
   },
   {
-    id: 15,
-    name: "Postman",
-    icon: <SiPostman className="text-orange-500" />,
+    title: "Backend & Services",
+    items: [
+      { name: "Node.js", icon: <FaNodeJs /> },
+      { name: "Spring Boot", icon: <SiSpring /> },
+      { name: "PHP", icon: <FaPhp /> },
+      { name: "Clerk Auth", icon: <SiClerk /> },
+      { name: "Python", icon: <FaPython /> },
+    ],
+  },
+  {
+    title: "Databases",
+    items: [
+      { name: "MySQL", icon: <SiMysql /> },
+      { name: "MongoDB", icon: <SiMongodb /> },
+      { name: "Firebase", icon: <SiFirebase /> },
+    ],
+  },
+  {
+    title: "Tools",
+    items: [
+      { name: "Git", icon: <FaGitAlt /> },
+      { name: "Jira", icon: <SiJira /> },
+    ],
   },
 ];
 
-// Variants for initial scroll animation
-const itemVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: (i) => ({
+/* 🔹 Animations */
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
     opacity: 1,
-    scale: 1,
-    transition: {
-      delay: i * 0.1,
-      type: "spring",
-      stiffness: 120,
-    },
-  }),
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 const Technologies = () => {
   return (
-    <section className=" text-white py-16 px-4" id="technologies">
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-5xl font-bold mb-15 text-green-400">
-          Technologies I Use
-        </h2>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-8 justify-center">
-          {technologies.map(({ id, name, icon }, i) => (
+    <section id="technologies" className="py-24 px-6 text-white">
+      <div className="max-w-6xl mx-auto">
+        {/* Title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold text-center text-green-400 mb-16"
+        >
+          Technologies & Tools
+        </motion.h2>
+
+        {/* Groups */}
+        <div className="grid gap-16">
+          {techGroups.map((group, index) => (
             <motion.div
-              key={id}
-              title={name}
-              custom={i}
+              key={index}
+              variants={cardVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={itemVariants}
-              whileHover={{
-                scale: 1.2,
-                rotate: 5,
-                transition: { type: "spring", stiffness: 300 },
-              }}
-              className="flex flex-col items-center space-y-2 cursor-default"
             >
-              <div className="text-6xl">{icon}</div>
-              <p className="text-sm font-medium">{name}</p>
+              <h3 className="text-2xl font-semibold text-gray-200 mb-6">
+                {group.title}
+              </h3>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                {group.items.map((item, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="flex flex-col items-center justify-center gap-3 p-5 rounded-xl bg-white/5 border border-white/10 hover:border-green-400 hover:bg-white/10 transition"
+                  >
+                    <div className="text-4xl text-green-400">{item.icon}</div>
+                    <p className="text-sm text-gray-300 font-medium">
+                      {item.name}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
