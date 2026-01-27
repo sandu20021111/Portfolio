@@ -19,11 +19,13 @@ import ContactForm from "./components/ContactForm";
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [cvOpen, setCvOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+  const toggleCv = () => setCvOpen(!cvOpen);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
@@ -171,17 +173,67 @@ const App = () => {
                 className="text-xl text-gray-300"
               />
 
-              <div className="mt-6 flex gap-4">
+              <div className="mt-6 flex flex-col sm:flex-row gap-4 relative">
                 <a href="#contact">
-                  <button className="bg-green-400 px-6 py-2 rounded-full font-medium text-black hover:bg-green-500 transition">
+                  <button className="bg-green-400 px-6 py-2 rounded-full font-medium text-black hover:bg-green-500 transition w-full sm:w-auto">
                     Contact Me
                   </button>
                 </a>
-                <a href="./Sanduni_CV.pdf" download>
-                  <button className="border border-green-400 px-6 py-2 rounded-full font-medium hover:bg-green-400 hover:text-black transition">
+
+                {/* CV Dropdown */}
+                <div className="relative w-full sm:w-auto">
+                  <button
+                    onClick={toggleCv}
+                    className="w-full sm:w-auto bg-black border border-green-400 px-6 py-2 rounded-full font-medium hover:bg-green-400 hover:text-black transition flex justify-between items-center"
+                  >
                     Download CV
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
                   </button>
-                </a>
+
+                  {cvOpen && (
+                    <ul className="absolute bg-black border border-green-400 mt-1 rounded-lg w-full text-left z-50">
+                      <li>
+                        <a
+                          href="./Sanduni_CV_QA.pdf"
+                          download
+                          className="block px-4 py-2 hover:bg-green-400 hover:text-black transition"
+                        >
+                          QA CV
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="./Sanduni_CV_FullStack.pdf"
+                          download
+                          className="block px-4 py-2 hover:bg-green-400 hover:text-black transition"
+                        >
+                          Full-Stack CV
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="./Sanduni_CV_UIUX.pdf"
+                          download
+                          className="block px-4 py-2 hover:bg-green-400 hover:text-black transition"
+                        >
+                          UI/UX CV
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
               </div>
             </div>
 

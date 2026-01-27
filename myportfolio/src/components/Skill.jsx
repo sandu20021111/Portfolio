@@ -35,12 +35,12 @@ const skills = [
   { name: "Tailwind CSS", level: 85, icon: <SiTailwindcss /> },
 
   { name: "Node.js", level: 80, icon: <FaNodeJs /> },
-  { name: "Spring Boot", level: 60, icon: <SiSpring /> },
-  { name: "PHP", level: 65, icon: <FaPhp /> },
+  { name: "Spring Boot", level: 90, icon: <SiSpring /> },
+  { name: "PHP", level: 95, icon: <FaPhp /> },
   { name: "Clerk Auth", level: 70, icon: <FaUserShield /> },
 
-  { name: "MySQL", level: 75, icon: <SiMysql /> },
-  { name: "MongoDB", level: 65, icon: <SiMongodb /> },
+  { name: "MySQL", level: 95, icon: <SiMysql /> },
+  { name: "MongoDB", level: 85, icon: <SiMongodb /> },
   { name: "Firebase", level: 80, icon: <SiFirebase /> },
 ];
 
