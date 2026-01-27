@@ -4,5 +4,5 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: "/Portfolio/",
+  base: "./", // This tells Vite to look in the current folder, not a subfolder
 });
